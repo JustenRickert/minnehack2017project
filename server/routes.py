@@ -1,6 +1,7 @@
 import subprocess
 from multiprocessing import Process
 
+from sqlalchemy.exc import IntegrityError
 from whereami.learn import learn
 from whereami.predict import locations, predict
 from flask import (
@@ -17,6 +18,7 @@ from .models import *
 @app.route("/", methods=["GET"])
 def index():
     areas = Area.query.order_by(Area.date_posted.asc()).all()
+    areas = [Area("coding_spo"), Area("back"), Area("stage"), Area("sleeping_area")]
     return render_template("index.html", areas=areas, config=app.config["PORT"])
 
 # @app.route("/room")
@@ -39,9 +41,11 @@ def api_learn():
         try:
             Area.learn(name)
             area = Area(name)
-            db.session.add(area)
-            db.session.commit()
+            # db.session.add(area)
+            # db.session.commit()
         except LearnLocation:
+            pass
+        except IntegrityError:
             pass
     p = Process(target=func)
     p.start()
@@ -52,7 +56,6 @@ def api_learn():
 def whereami_predict():
     prediction = predict()
     talk('the current room is the '+fake_name_to_real_name(prediction))
-    print(prediction)
     return prediction
 
 
