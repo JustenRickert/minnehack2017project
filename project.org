@@ -1,3 +1,5 @@
+#+AUTHOR: Justen Rickert
+#+TITLE:Personalized in-home care robotic assistant/virtual companion
 
 * Idea
 A virtual companion, or robotic assistant for those living alone and requiring
@@ -6,8 +8,8 @@ personalized in-home care.
 * Implementation
 The implementation of the idea depends on three different utilities
 - Python module =whereami=
-- Python web framework Flask
-- Typescript web application front-end
+- Python web framework =Flask=
+- =Typescript= web application front-end
 
 ** Location-polling
 Python module =whereami= derives location-based data based on available wifi
@@ -19,11 +21,18 @@ kind of location polling device.
 ** Flask server
 A lightweight Python web framework to receive the location data from the polling
 device. Manages information about the whereabouts of the patient throughout the
-day.
+day. Given this information, the flask server can feed relevant text to be
+synthesized and outputted to the patient, via speakers placed in the rooms of
+the house. This is very lightweight server, so something such as a Raspberry PI
+could be used to run the server.
 
 ** Web application front-end
 The Typescript web application polls the database created by the Flask server to
-display the current location of the patient on the screen display.
+display the current location and other relevant information of the patient on a
+web browser. This web application acts as a sort of logging utility. Any text
+sent or received by the server can be relayed to the web application. Thus,
+health workers could maintain a second-hand surveillance of the patient without
+the need of having to stare at surveillance video feeds.
 
 * Rationale/Extension
 Many elderly patients have problems with Dementia or Alzheimer's. In some cases,
@@ -31,26 +40,25 @@ these patient may need help with daily judgment and reasoning. A robotic
 assistant would be available 24 hours of the day to help in such a situation.
 For example, perhaps the location-polling device reports a lot of time being
 spent in the bathroom. The robotic assistant could be in the house to ask the
-patient if they may be in need of assistance. This could achieved via a speaker
-placed in the bathroom. If no response is given, then emergency services could
-be called to aid.
+patient if they may be in need of assistance. This could achieved be via a
+speaker placed in the bathroom. If no response is given, then emergency services
+could be called to aid.
 
-Another problem these types of patients could have come from an inability to
-focus and pay attention. Daily agenda information could be stored, and the
-robotic assistant could remind the patient of doing those things. For example,
-if a family member has scheduled a visit, then the robotic assistant could
-inform the patient in the morning that the family member will be coming, as well
-as just before the family member is scheduled to arrive.
+Another problem these types of patients could have is an inability to focus and
+pay attention. Daily agenda information could be stored, and the robotic
+assistant could remind the patient of doing those things. For example, if a
+family member has scheduled a visit, then the robotic assistant could inform the
+patient in the morning that the family member will be coming, as well as just
+before the family member is scheduled to arrive. Another example of something
+that could be done is: If the a lot of time is being spent in one place of the
+house, then the robotic assistant could suggest a new activity to get the
+patient moving on with his/her day. The robotic assistant in these ways acts not
+only as an automated utility for emergency services, but as a virtual companion
+for the patient.
 
-The robotic assistant in these ways acts not only as an automated utility for
-emergency services, but as a virtual companion for the patient. Just as one
-could play 
-
-#+begin_example
-def detect_too_many_bathroom_uses(self):
-    uses = 0
-    for el in self.states:
-        if el == 'bathroom':
-            uses += 1
-    return uses >= 4
-#+end_example
+* LaTeX Setting                                                    :noexport:
+#+OPTIONS: toc:nil
+#+LATEX_HEADER: \usepackage[margin=1.0in]{geometry}
+#+LATEX_HEADER: \documentclass{article}
+#+LATEX_HEADER: \usepackage{setspace,mathrsfs,amsmath,amssymb,graphicx,cancel,lmodern}
+#+LATEX_HEADER: \doublespacing
