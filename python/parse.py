@@ -8,7 +8,6 @@ def many_random_of(possiblilities, length):
         length -= 1
     return random_possibilities
 
-
 class Transition(object):
     transitions = ()
     possible = ['bedroom', 'bathroom', 'livingroom', 'frontdoor']
@@ -31,6 +30,13 @@ class Transition(object):
             else:
                 return inarow > 360
         return inarow > 360
+
+    def detect_leaving_house():
+        if self.transitions[-1] is 'frontdoor':
+            for i in range(0, len(self.transitions)-1):
+                if self.transitions[i] != None:
+                    return False
+        return True
 
     def detect_not_waking_up(self):
         not_waking_up = True
