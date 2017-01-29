@@ -13,12 +13,22 @@ The implementation of the idea depends on three different utilities
 Python module =whereami= derives location-based data based on available wifi
 access points. Many devices have on-board wifi cards which could be used to keep
 track of the devices location without the need for GPS, or other complicated
-hardware for in-home position tracking. Any generic smart watch could be used,
-for example, or even a Raspberry PI.
+hardware for in-home position tracking. Any generic smart watch could be used as
+kind of location polling device.
 
 ** Flask server
-A lightweight Python web framework 
+A lightweight Python web framework to receive the location data from the polling
+device. Manages information about the whereabouts of the patient throughout the
+day.
 
 ** Web application front-end
+The Typescript web application polls the database created by the Flask server to
+display the current location of the patient on the screen display.
 
-
+* Rationale/Extension
+Many elderly patients have problems with Dementia or Alzheimer's. In some cases,
+these patient may need help with daily judgment and reasoning. A robotic
+assistant would be available 24 hours of the day to help in such a situation. By
+example, perhaps the location-polling device reports a lot of time being spent
+in the bathroom. The robotic assistant could be in the house to ask the patient
+if they may be in need of assistance. This could be done various speakers .
