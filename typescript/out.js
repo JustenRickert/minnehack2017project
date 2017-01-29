@@ -44,6 +44,7 @@ var Room = (function () {
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.stroke();
         ctx.closePath();
+        ctx.fillstyle = "black";
         ctx.fillText(this.name, this.x + 3, this.y + 10);
     };
     Room.drawRooms = function () {

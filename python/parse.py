@@ -1,5 +1,5 @@
 import random
-import datetime
+import time
 
 def many_random_of(possiblilities, length):
     random_possibilities = []
@@ -8,7 +8,7 @@ def many_random_of(possiblilities, length):
         length -= 1
     return random_possibilities
 
-class Transition:
+class Transition(object):
     transitions = ()
     possible = ['bedroom', 'bathroom', 'livingroom', 'frontdoor']
 
@@ -17,20 +17,23 @@ class Transition:
 
     def detect_too_many_bathroom_uses(self):
         uses = 0
-        for i in range(self.transitions):
+        for i in range(0, len(self.transitions)):
             if self.transitions[i] == 'bathroom':
                 uses += 1
         return uses >= 4
 
-    # def detect_not_waking_up(self):
-    #     not_waking_up = True
-    #     datetime.time()
-    #     for i in range(self.transitions):
-    #         if self.transitions[i] != 'bedroom':
-    #             not_waking_up = False
-    #             break
+    def detect_not_waking_up(self):
+        not_waking_up = True
+        hour = time.strftime('%H')
+        for i in range(self.transitions):
+            if self.transitions[i] != 'bedroom':
+                not_waking_up = False
+                break
+        return not_waking_up and hour < 10
+
+    def 
 
 
-
-
-print(datetime.time())
+trans = Transition()
+print(trans.transitions)
+print(trans.detect_too_many_bathroom_uses())
