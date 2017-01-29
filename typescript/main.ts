@@ -1,45 +1,65 @@
+/*-*-mode:typescript-*-*/
+
 let circle: Circle = new Circle();
 let bedroom: Room = new Room('bedroom', 20, 20, 100, 150);
 let bathroom: Room = new Room('bathroom', 130, 20, 100, 150);
 let livingroom: Room = new Room('livingroom', 20, 180, 100, 150);
 let frontdoor: Room = new Room('frontdoor', 130, 180, 50, 75);
 
+
+var currentRoom: string = 'coding_spo';
+var frame: number = 0;
+
 clearScreen();
 Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
-circle.drawIn(randomIn(bedroom, livingroom, frontdoor, bathroom));
+circle.drawIn(getRoomByName(currentRoom));
 
-Math.random();
-var frame: number = 0;
-callAjax('/test');
 loop();
 
+function getRoomByName(name: string): Room {
+    return {
+        'coding_spo': bedroom,
+        'back': bathroom,
+        'stage': livingroom,
+    }[name]
+}
+
+function checkRoomAndRedraw(): void {
+    if (currentRoom)
+        drawNewScene();
+}
+
+function drawNewScene(): void {
+    console.log(currentRoom, getRoomByName(currentRoom));
+    clearScreen()
+    Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
+    circle.drawIn(getRoomByName(currentRoom));
+}
 
 function loop() {
-    if (frame % 120 === 0) {
-        clearScreen();
-        Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
-        circle.drawIn(randomIn(bedroom, livingroom, frontdoor, bathroom));
+    if (frame % 300 === 0) {
+        callAjax('/room');
+        checkRoomAndRedraw();
     }
 
     frame += 1;
     requestAnimationFrame(loop);
 }
 
-function callAjax(url) {
+function callAjax(url): void {
     var xmlhttp = new XMLHttpRequest();
+    var response: string;
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status === 200) {
-            // console.log('what?')
-            console.log(xmlhttp.responseText);
+            currentRoom = xmlhttp.responseText;
         }
     }
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open("GET", url);
     xmlhttp.send();
 }
 
-function randomIn(...rooms: Room[]) {
+function randomIn(...rooms: Room[]): Room {
     let size = rooms.length;
     let random = Math.floor(Math.random() * size);
-    console.log(rooms[random]);
     return rooms[random];
 }

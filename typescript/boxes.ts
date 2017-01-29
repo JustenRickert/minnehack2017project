@@ -30,6 +30,7 @@ class Circle {
     }
 
     drawIn(room: Room): void {
+        console.log(room);
         this.changePos(
             room.x + room.width / 2,
             room.y + room.height / 2)

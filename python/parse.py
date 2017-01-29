@@ -31,8 +31,6 @@ class Transition(object):
                 break
         return not_waking_up and hour < 10
 
-    def 
-
 
 trans = Transition()
 print(trans.transitions)

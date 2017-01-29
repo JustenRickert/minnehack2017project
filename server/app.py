@@ -32,10 +32,14 @@ def index():
     posts = Post.query.order_by(Post.date_posted.asc()).all()
     return render_template("index.html", posts=posts, config=app.config["PORT"])
 
-@app.route("/test")
+@app.route("/room")
 def whereami_predict():
+    # print(locations())
+    # print(predict())
     return predict()
 
 if __name__ == "__main__":
+    # print(predict())
+    # print(locations())
     db.create_all()
     app.run('0.0.0.0', port=app.config["PORT"])
