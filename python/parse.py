@@ -52,14 +52,3 @@ class Transition(object):
         if int(hour) <= 7:
             if self.transitions[-1] != 'bedroom':
                 return True
-
-
-# trans = Transition()
-# print(time.strftime('%H'))
-# print(trans.transitions)
-# print(trans.detect_too_many_bathroom_uses())
-
-# test_array = [1,2,3,4,5,6,7,8,9,10]
-# while test_array:
-#     print(test_array)
-#     test_array = test_array[1:-1]
