@@ -6,7 +6,6 @@ let bathroom: Room = new Room('bathroom', 130, 20, 100, 150);
 let livingroom: Room = new Room('livingroom', 20, 180, 100, 150);
 let frontdoor: Room = new Room('frontdoor', 130, 180, 50, 75);
 
-
 var currentRoom: string = 'coding_spo';
 var frame: number = 0;
 
@@ -21,6 +20,7 @@ function getRoomByName(name: string): Room {
         'coding_spo': bedroom,
         'back': bathroom,
         'stage': livingroom,
+        'sleeping_area': frontdoor,
     }[name]
 }
 
