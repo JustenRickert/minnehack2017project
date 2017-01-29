@@ -16,20 +16,19 @@
 
 <br>
 
-<form action="/" method="POST">
+<form action="/learn" method="POST">
   <div class="form-group">
-    <input name="text" class="form-control input-lg" type="text" placeholder="Enter a message" required>
+    <input name="areaName" class="form-control input-lg" type="text" placeholder="Enter in a new area" required>
   </div>
-  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enter">
 </form>
 
 <br>
 <hr>
 
 <div>
-  {{config}}
-  {% for post in posts %}
-    <h4 class="well"><strong>{{post.text}}</strong> - <em>{{post.date_posted.strftime('%Y-%m-%d')}}</em></h4>
+  {% for area in areas %}
+    <h4 class="well"><strong>{{area.name}}</strong> - <em>{{area.date_posted.strftime('%Y-%m-%d')}}</em></h4>
   {% endfor %}
 </div>
 

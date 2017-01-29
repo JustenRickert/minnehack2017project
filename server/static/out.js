@@ -51,7 +51,7 @@ var Room = (function () {
     Room.drawRooms = function () {
         var rooms = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            rooms[_i - 0] = arguments[_i];
+            rooms[_i] = arguments[_i];
         }
         rooms.forEach(function (e) { return e.draw(); });
     };
@@ -73,8 +73,7 @@ function getRoomByName(name) {
     return {
         'coding_spo': bedroom,
         'back': bathroom,
-        'stage': livingroom,
-        'sleeping_area': frontdoor
+        'stage': livingroom
     }[name];
 }
 function checkRoomAndRedraw() {
@@ -85,7 +84,8 @@ function drawNewScene() {
     console.log(currentRoom, getRoomByName(currentRoom));
     clearScreen();
     Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
-    circle.drawIn(getRoomByName(currentRoom));
+    var room = getRoomByName(currentRoom);
+    circle.drawIn(room);
 }
 function loop() {
     if (frame % 300 === 0) {
@@ -109,7 +109,7 @@ function callAjax(url) {
 function randomIn() {
     var rooms = [];
     for (var _i = 0; _i < arguments.length; _i++) {
-        rooms[_i - 0] = arguments[_i];
+        rooms[_i] = arguments[_i];
     }
     var size = rooms.length;
     var random = Math.floor(Math.random() * size);

@@ -33,7 +33,8 @@ function drawNewScene(): void {
     console.log(currentRoom, getRoomByName(currentRoom));
     clearScreen()
     Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
-    circle.drawIn(getRoomByName(currentRoom));
+    let room = getRoomByName(currentRoom);
+    circle.drawIn(room);
 }
 
 function loop() {
