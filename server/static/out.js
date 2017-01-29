@@ -51,7 +51,11 @@ var Room = (function () {
     Room.drawRooms = function () {
         var rooms = [];
         for (var _i = 0; _i < arguments.length; _i++) {
+<<<<<<< HEAD
             rooms[_i] = arguments[_i];
+=======
+            rooms[_i - 0] = arguments[_i];
+>>>>>>> 167ed7555cea85b391d0f5ed9e43902e2b9e3e6f
         }
         rooms.forEach(function (e) { return e.draw(); });
     };
@@ -108,7 +112,11 @@ function callAjax(url) {
 function randomIn() {
     var rooms = [];
     for (var _i = 0; _i < arguments.length; _i++) {
+<<<<<<< HEAD
         rooms[_i] = arguments[_i];
+=======
+        rooms[_i - 0] = arguments[_i];
+>>>>>>> 167ed7555cea85b391d0f5ed9e43902e2b9e3e6f
     }
     var size = rooms.length;
     var random = Math.floor(Math.random() * size);

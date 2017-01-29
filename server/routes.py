@@ -22,6 +22,6 @@ def index():
     return render_template("index.html", posts=posts, config=app.config["PORT"])
 
 
-@app.route("/test")
+@app.route("/room")
 def whereami_predict():
     return predict()
