@@ -1,4 +1,14 @@
-from . import app
+from whereami.learn import learn
+from whereami.predict import locations, predict
+from flask import (
+    render_template,
+    request,
+)
+
+from . import (
+    app,
+    sockets,
+)
 from .models import *
 
 @app.route("/", methods=["GET", "POST"])

@@ -8,7 +8,11 @@ from time import sleep
 # whereami_learn()
 # print(locations())
 
-while True:
-    sleep(5)
-    write_to_database(predict())
+# while True:
+#     sleep(5)
+#     write_to_database(predict())
 
+def where_am_i_predict():
+    return predict()
+
+print(where_am_i_predict())

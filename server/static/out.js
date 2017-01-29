@@ -25,6 +25,7 @@ var Circle = (function () {
         this.y = y;
     };
     Circle.prototype.drawIn = function (room) {
+        console.log(room);
         this.changePos(room.x + room.width / 2, room.y + room.height / 2);
         this.draw();
     };
@@ -56,36 +57,52 @@ var Room = (function () {
     };
     return Room;
 }());
+/*-*-mode:typescript-*-*/
 var circle = new Circle();
 var bedroom = new Room('bedroom', 20, 20, 100, 150);
 var bathroom = new Room('bathroom', 130, 20, 100, 150);
 var livingroom = new Room('livingroom', 20, 180, 100, 150);
 var frontdoor = new Room('frontdoor', 130, 180, 50, 75);
+var currentRoom = 'coding_spo';
+var frame = 0;
 clearScreen();
 Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
-circle.drawIn(randomIn(bedroom, livingroom, frontdoor, bathroom));
-Math.random();
-var frame = 0;
-callAjax('/');
+circle.drawIn(getRoomByName(currentRoom));
 loop();
+function getRoomByName(name) {
+    return {
+        'coding_spo': bedroom,
+        'back': bathroom,
+        'stage': livingroom
+    }[name];
+}
+function checkRoomAndRedraw() {
+    if (currentRoom)
+        drawNewScene();
+}
+function drawNewScene() {
+    console.log(currentRoom, getRoomByName(currentRoom));
+    clearScreen();
+    Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
+    circle.drawIn(getRoomByName(currentRoom));
+}
 function loop() {
-    if (frame % 120 === 0) {
-        clearScreen();
-        Room.drawRooms(bedroom, bathroom, livingroom, frontdoor);
-        circle.drawIn(randomIn(bedroom, livingroom, frontdoor, bathroom));
+    if (frame % 300 === 0) {
+        callAjax('/room');
+        checkRoomAndRedraw();
     }
     frame += 1;
     requestAnimationFrame(loop);
 }
 function callAjax(url) {
     var xmlhttp = new XMLHttpRequest();
+    var response;
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status === 200) {
-            console.log('what?');
-            console.log(xmlhttp.responseText);
+            currentRoom = xmlhttp.responseText;
         }
     };
-    xmlhttp.open("GET", url, true);
+    xmlhttp.open("GET", url);
     xmlhttp.send();
 }
 function randomIn() {
@@ -95,6 +112,5 @@ function randomIn() {
     }
     var size = rooms.length;
     var random = Math.floor(Math.random() * size);
-    console.log(rooms[random]);
     return rooms[random];
 }
