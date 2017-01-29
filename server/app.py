@@ -34,8 +34,6 @@ def index():
 
 @app.route("/room")
 def whereami_predict():
-    # print(locations())
-    # print(predict())
     return predict()
 
 if __name__ == "__main__":
