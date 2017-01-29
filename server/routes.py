@@ -4,7 +4,6 @@ import time
 from multiprocessing import Process
 
 from sqlalchemy.exc import IntegrityError
-from whereami.learn import learn
 from whereami.predict import locations, predict
 from flask import (
     render_template,
@@ -36,34 +35,35 @@ def index():
 #         return "None"
 
 
-@app.route("/learn", methods=["GET", "POST"])
-def api_learn():
-    name = request.form["areaName"]
-    def func():
-        try:
-            Area.learn(name)
-            area = Area(name)
-            # db.session.add(area)
-            # db.session.commit()
-        except LearnLocation:
-            pass
-        except IntegrityError:
-            pass
-    p = Process(target=func)
-    p.start()
-    return index()
+# @app.route("/learn", methods=["GET", "POST"])
+# def api_learn():
+#     name = request.form["areaName"]
+#     def func():
+#         try:
+#             Area.learn(name)
+#             area = Area(name)
+#             # db.session.add(area)
+#             # db.session.commit()
+#         except LearnLocation:
+#             pass
+#         except IntegrityError:
+#             pass
+#     p = Process(target=func)
+#     p.start()
+#     return index()
 
 
 
 @app.route("/room")
 def whereami_predict():
     prediction = predict()
-    talk('the current room is the '+fake_name_to_real_name(prediction))
+    # talk('the current room is the '+fake_name_to_real_name(prediction))
     return prediction
 
 @app.route("/sched")
 def run_pending_schedule():
     schedule.run_pending()
+    return "schedule run"
 
 def talk(sentence):
     subprocess.call(['./bin/say', sentence])
@@ -85,7 +85,6 @@ def AntiThyroid():
 def Tylenol():
     talk("Take some tylenol.")
 
-
 def Alarm():
     talk("Wake up! It's 7am")
 
@@ -93,4 +92,4 @@ def Alarm():
 # schedule.every().day.at("08:00").do(AntiThyroid)
 # schedule.every().day.at("13:36").do(Tylenol)
 schedule.every().minute.do(Metformin)
-schedule.every().day.at("13:48").do(Alarm)
+schedule.every().day.at("14:02").do(Alarm)

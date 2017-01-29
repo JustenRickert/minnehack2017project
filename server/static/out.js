@@ -91,11 +91,21 @@ function drawNewScene() {
 function loop() {
     if (frame % 500 === 0) {
         callAjax('/room');
-        callAjax('/sched');
+        callAjaxSched('/sched');
         checkRoomAndRedraw();
     }
     frame += 1;
     requestAnimationFrame(loop);
+}
+function callAjaxSched(url) {
+    var xmlhttp = new XMLHttpRequest();
+    var response;
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status === 200) {
+        }
+    };
+    xmlhttp.open("GET", url);
+    xmlhttp.send();
 }
 function callAjax(url) {
     var xmlhttp = new XMLHttpRequest();

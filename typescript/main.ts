@@ -40,12 +40,24 @@ function drawNewScene(): void {
 function loop() {
     if (frame % 500 === 0) {
         callAjax('/room');
-        callAjax('/sched')
+        callAjaxSched('/sched')
         checkRoomAndRedraw();
     }
 
     frame += 1;
     requestAnimationFrame(loop);
+}
+
+function callAjaxSched(url): void {
+    var xmlhttp = new XMLHttpRequest();
+    var response: string;
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE && xmlhttp.status === 200) {
+            // currentRoom = xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET", url);
+    xmlhttp.send();
 }
 
 function callAjax(url): void {
