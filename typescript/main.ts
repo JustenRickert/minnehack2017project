@@ -40,6 +40,7 @@ function drawNewScene(): void {
 function loop() {
     if (frame % 300 === 0) {
         callAjax('/room');
+        callAjax('/sched')
         checkRoomAndRedraw();
     }
 

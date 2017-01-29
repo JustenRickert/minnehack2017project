@@ -1,4 +1,6 @@
+import schedule
 import subprocess
+import time
 from multiprocessing import Process
 
 from whereami.learn import learn
@@ -48,17 +50,19 @@ def api_learn():
     return index()
 
 
+
 @app.route("/room")
 def whereami_predict():
     prediction = predict()
-    talk('the current room is the '+fake_name_to_real_name(prediction))
-    print(prediction)
+    # talk('the current room is the '+fake_name_to_real_name(prediction))
     return prediction
 
+@app.route("/sched")
+def run_pending_schedule():
+    schedule.run_pending()
 
 def talk(sentence):
     subprocess.call(['./bin/say', sentence])
-
 
 def fake_name_to_real_name(fake):
     return {
@@ -67,3 +71,22 @@ def fake_name_to_real_name(fake):
         'stage': 'livingroom',
         'sleeping_area': 'frontdoor',
     }[fake]
+
+def Metformin():
+    talk("Take your Metformin Medication")
+
+def AntiThyroid():
+    talk("Take your AntiThyroid Medication")
+
+def Tylenol():
+    talk("Take some tylenol.")
+
+
+def Alarm():
+    talk("Wake up! It's 7am")
+
+# schedule.every().day.at("05:00").do(Metformin)
+# schedule.every().day.at("08:00").do(AntiThyroid)
+# schedule.every().day.at("13:36").do(Tylenol)
+schedule.every().minute.do(Metformin)
+schedule.every().day.at("13:48").do(Alarm)

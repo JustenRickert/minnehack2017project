@@ -51,7 +51,7 @@ var Room = (function () {
     Room.drawRooms = function () {
         var rooms = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            rooms[_i] = arguments[_i];
+            rooms[_i - 0] = arguments[_i];
         }
         rooms.forEach(function (e) { return e.draw(); });
     };
@@ -73,7 +73,8 @@ function getRoomByName(name) {
     return {
         'coding_spo': bedroom,
         'back': bathroom,
-        'stage': livingroom
+        'stage': livingroom,
+        'sleeping_area': frontdoor
     }[name];
 }
 function checkRoomAndRedraw() {
@@ -90,6 +91,7 @@ function drawNewScene() {
 function loop() {
     if (frame % 300 === 0) {
         callAjax('/room');
+        callAjax('/sched');
         checkRoomAndRedraw();
     }
     frame += 1;
@@ -109,7 +111,7 @@ function callAjax(url) {
 function randomIn() {
     var rooms = [];
     for (var _i = 0; _i < arguments.length; _i++) {
-        rooms[_i] = arguments[_i];
+        rooms[_i - 0] = arguments[_i];
     }
     var size = rooms.length;
     var random = Math.floor(Math.random() * size);
