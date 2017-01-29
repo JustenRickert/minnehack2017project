@@ -1,9 +1,12 @@
+from whereami.learn import learn
+from whereami.predict import locations, predict
+
 from flask import (
     Flask,
     render_template,
     request,
-
 )
+
 from flask_sockets import Sockets
 from flask_pytest import FlaskPytest
 from flask_sqlalchemy import SQLAlchemy
@@ -28,6 +31,10 @@ def index():
         db.session.commit()
     posts = Post.query.order_by(Post.date_posted.asc()).all()
     return render_template("index.html", posts=posts, config=app.config["PORT"])
+
+@app.route("/test")
+def whereami_predict():
+    return predict()
 
 if __name__ == "__main__":
     db.create_all()
