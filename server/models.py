@@ -1,6 +1,7 @@
 import datetime
 
-from server.app import db
+from . import db
+
 
 class Post(db.Model):
     __tablename__ = "posts"

@@ -1,3 +1,5 @@
+from whereami.learn import learn
+from whereami.predict import locations, predict
 from flask import (
     Flask,
     render_template,
@@ -8,7 +10,6 @@ from flask_pytest import FlaskPytest
 from flask_sqlalchemy import SQLAlchemy
 
 from server.config import BaseConfig
-from server.models import *
 
 app = Flask(__name__)
 app.config.from_object(BaseConfig)
@@ -17,6 +18,7 @@ sockets = Sockets(app)
 # app = FlaskPytest(app)
 
 
+from .db import *
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -29,6 +31,6 @@ def index():
     return render_template("index.html", posts=posts, config=app.config["PORT"])
 
 
-@app.route("/pong", methods=["POST"])
-def pong():
-    pass
+@app.route("/test")
+def whereami_predict():
+    return predict()
