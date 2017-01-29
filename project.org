@@ -1,0 +1,24 @@
+
+* Idea
+A virtual companion, or robotic assistant for those living alone and requiring
+personalized in-home care.
+
+* Implementation
+The implementation of the idea depends on three different utilities
+- Python module =whereami=
+- Python web framework Flask
+- Typescript web application front-end
+
+** Location-polling
+Python module =whereami= derives location-based data based on available wifi
+access points. Many devices have on-board wifi cards which could be used to keep
+track of the devices location without the need for GPS, or other complicated
+hardware for in-home position tracking. Any generic smart watch could be used,
+for example, or even a Raspberry PI.
+
+** Flask server
+A lightweight Python web framework 
+
+** Web application front-end
+
+
