@@ -1,10 +1,10 @@
 /*-*-mode:typescript-*-*/
 
 let circle: Circle = new Circle();
-let bedroom: Room = new Room('bedroom', 20, 20, 100, 150);
-let bathroom: Room = new Room('bathroom', 130, 20, 100, 150);
-let livingroom: Room = new Room('livingroom', 20, 180, 100, 150);
-let frontdoor: Room = new Room('frontdoor', 130, 180, 50, 75);
+let bedroom: Room = new Room('bedroom', 20, 20, 100, 150); // coding_spo
+let bathroom: Room = new Room('bathroom', 130, 20, 100, 150); // back
+let livingroom: Room = new Room('livingroom', 20, 180, 100, 150); // stage
+let frontdoor: Room = new Room('frontdoor', 130, 180, 50, 75); // sleeping_area
 
 var currentRoom: string = 'coding_spo';
 var frame: number = 0;
@@ -38,7 +38,7 @@ function drawNewScene(): void {
 }
 
 function loop() {
-    if (frame % 300 === 0) {
+    if (frame % 500 === 0) {
         callAjax('/room');
         callAjax('/sched')
         checkRoomAndRedraw();

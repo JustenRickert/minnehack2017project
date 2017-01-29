@@ -59,10 +59,10 @@ var Room = (function () {
 }());
 /*-*-mode:typescript-*-*/
 var circle = new Circle();
-var bedroom = new Room('bedroom', 20, 20, 100, 150);
-var bathroom = new Room('bathroom', 130, 20, 100, 150);
-var livingroom = new Room('livingroom', 20, 180, 100, 150);
-var frontdoor = new Room('frontdoor', 130, 180, 50, 75);
+var bedroom = new Room('bedroom', 20, 20, 100, 150); // coding_spo
+var bathroom = new Room('bathroom', 130, 20, 100, 150); // back
+var livingroom = new Room('livingroom', 20, 180, 100, 150); // stage
+var frontdoor = new Room('frontdoor', 130, 180, 50, 75); // sleeping_area
 var currentRoom = 'coding_spo';
 var frame = 0;
 clearScreen();
@@ -89,7 +89,7 @@ function drawNewScene() {
     circle.drawIn(room);
 }
 function loop() {
-    if (frame % 300 === 0) {
+    if (frame % 500 === 0) {
         callAjax('/room');
         callAjax('/sched');
         checkRoomAndRedraw();

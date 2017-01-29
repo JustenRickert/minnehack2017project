@@ -20,7 +20,7 @@ class Area(db.Model):
         return Area(predict())
 
     def learn(name):
-        learn(name)
+        learn(name, 1000)
 
     def locations():
         return locations()
