@@ -19,6 +19,13 @@ function loop() {
     requestAnimationFrame(loop);
 }
 
+function loadAJAX() {
+    var xhttp = new XMLHttpRequest();
+    // xhttp.onreadystatechange = () => {
+    //     if ()
+    // }
+}
+
 function randomIn(...rooms: Room[]) {
     let size = rooms.length;
     let random = Math.floor(Math.random() * size);
